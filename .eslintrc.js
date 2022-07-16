@@ -44,5 +44,7 @@ module.exports = {
         message: '`with` is disallowed in strict mode because it makes code impossible to predict and optimize.',
       },
     ],
+    'spaced-comment': false,
+    
   }
 };
