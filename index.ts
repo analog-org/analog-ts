@@ -1,7 +1,14 @@
 //dependancy for discordjs
-import { Client, Intents, Collection, ClientApplication, InteractionType, Interaction } from "discord.js"
-import fs from "fs"
-import dotenv from "dotenv"
+import {
+  Client,
+  Intents,
+  Collection,
+  ClientApplication,
+  InteractionType,
+  Interaction,
+} from "discord.js";
+import fs from "fs";
+import dotenv from "dotenv";
 
 dotenv.config();
 const client: any = new Client({
@@ -19,7 +26,7 @@ const client: any = new Client({
   ],
 });
 
-export default client
+export default client;
 
 client.commands = new Collection();
 
@@ -51,7 +58,7 @@ for (const file of commandFiles) {
 
 // This executes slash commands when a player does a slash command
 client.on("interactionCreate", async (interaction: Interaction) => {
-  if (!interaction.isCommand()) return;
+  if (!interaction.isCommand() || !interaction.isContextMenu()) return;
 
   const command = client.commands.get(interaction.commandName);
 
