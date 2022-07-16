@@ -5,11 +5,14 @@ import fs from "fs";
 import { SlashCommandBuilder } from "@discordjs/builders"
 import { REST } from "@discordjs/rest"
 import { Routes } from "discord-api-types/v9"
-import { guildId, clientId } from "./config.json"
+import client from "./index";
+import dotenv from "dotenv"
+
+const clientId = client.user.id
 
 // dotenv dependancy
 
-const dotenv = require("dotenv");
+
 dotenv.config();
 //Gets slash commands
 const commands = [];
