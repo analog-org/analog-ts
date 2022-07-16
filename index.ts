@@ -20,6 +20,8 @@ const client = new Client({
   ],
 });
 
+export default client
+
 client.commands = new Collection();
 
 /* 
