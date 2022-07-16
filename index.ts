@@ -1,10 +1,10 @@
 //dependancy for discordjs
-import { Client, Intents, Collection } from "discord.js"
+import { Client, Intents, Collection, ClientApplication, InteractionType, Interaction } from "discord.js"
 import fs from "fs"
 import dotenv from "dotenv"
 
 dotenv.config();
-const client = new Client({
+const client: any = new Client({
   intents: [
     Intents.FLAGS.GUILDS,
     Intents.FLAGS.GUILD_MESSAGES,
@@ -34,9 +34,9 @@ const eventFiles = fs
 for (const file of eventFiles) {
   const event = require(`./events/${file}`);
   if (event.once) {
-    client.once(event.name, (...args) => event.execute(...args));
+    client.once(event.name, (...args: any) => event.execute(...args));
   } else {
-    client.on(event.name, (...args) => event.execute(...args));
+    client.on(event.name, (...args: any) => event.execute(...args));
   }
 }
 // This gets the command modules from the command folders
@@ -50,7 +50,7 @@ for (const file of commandFiles) {
 }
 
 // This executes slash commands when a player does a slash command
-client.on("interactionCreate", async (interaction) => {
+client.on("interactionCreate", async (interaction: Interaction) => {
   if (!interaction.isCommand()) return;
 
   const command = client.commands.get(interaction.commandName);
