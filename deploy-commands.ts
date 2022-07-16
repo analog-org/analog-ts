@@ -1,11 +1,11 @@
 // Discordjs dependancy
 
 // const fs = require("fs");
-import fs from 'fs'
-const { SlashCommandBuilder } = require("@discordjs/builders");
-const { REST } = require("@discordjs/rest");
-const { Routes } = require("discord-api-types/v9");
-const { guildId, clientId } = require("./config.json");
+import fs from "fs";
+import { SlashCommandBuilder } from "@discordjs/builders"
+import { REST } from "@discordjs/rest"
+import { Routes } from "discord-api-types/v9"
+import { guildId, clientId } from "./config.json"
 
 // dotenv dependancy
 
