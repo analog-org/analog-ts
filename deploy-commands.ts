@@ -26,6 +26,6 @@ for (const file of cmdFiles) {
 
 // This actually registers the slash commands into the guild
 rest
-  .put(Routes.applicationGuildCommands(clientId, guildId), { body: commands })
+  .put(Routes.applicationCommands(clientId), { body: commands })
   .then(() => console.log("Successfully registered application commands."))
   .catch(console.error);
