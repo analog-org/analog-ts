@@ -1,9 +1,8 @@
 //dependancy for discordjs
-const { Client, Intents, Collection } = require("discord.js");
-const { clientId, guildId } = require("./config.json");
-const { checkVirus } = require("./utils/checkvirus");
-const fs = require("fs");
-const dotenv = require("dotenv");
+import { Client, Intents, Collection } from "discord.js"
+import fs from "fs"
+import dotenv from "dotenv"
+
 dotenv.config();
 const client = new Client({
   intents: [
