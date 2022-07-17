@@ -35,7 +35,7 @@ client.commands = new Collection();
     The entire thing allows handling events to be as easy as adding it to the events folder and then restarting the bot
 */
 const eventFiles = fs
-  .readdirSync("./events")
+  .readdirSync(`${__dirname}/events`)
   .filter((file) => file.endsWith(".js"));
 // This retrieves the event files and runs them if they should be run once or constantly ↓ this actually runs the event files code
 for (const file of eventFiles) {
@@ -48,7 +48,7 @@ for (const file of eventFiles) {
 }
 // This gets the command modules from the command folders
 const commandFiles = fs
-  .readdirSync("./commands")
+  .readdirSync(`${__dirname}./commands`)
   .filter((file) => file.endsWith(".js"));
 
 for (const file of commandFiles) {
