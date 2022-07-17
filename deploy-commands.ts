@@ -20,7 +20,7 @@ const cmdFiles = fs
   .readdirSync("./commands")
   .filter((file) => file.endsWith(".js"));
 
-const rest = new REST({ version: "9" }).setToken(process.env.TOKEN);
+const rest = new REST({ version: "9" }).setToken(process.env.TOKEN!);
 
 for (const file of cmdFiles) {
   const command = require(`./commands/${file}`);
