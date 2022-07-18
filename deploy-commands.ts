@@ -17,7 +17,7 @@ dotenv.config();
 //Gets slash commands
 const commands = [];
 const cmdFiles = fs
-  .readdirSync("./commands")
+  .readdirSync(`${__dirname}/commands`)
   .filter((file) => file.endsWith(".js"));
 
 const rest = new REST({ version: "9" }).setToken(process.env.TOKEN!);
