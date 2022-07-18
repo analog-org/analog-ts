@@ -23,7 +23,7 @@ const cmdFiles = fs
 const rest = new REST({ version: "9" }).setToken(process.env.TOKEN!);
 
 for (const file of cmdFiles) {
-  const command = require(`./commands/${file}`);
+  const command = require(`${__dirname}/commands/${file}`);
   commands.push(command.data.toJSON());
 }
 
