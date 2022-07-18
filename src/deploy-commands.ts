@@ -5,7 +5,7 @@ import fs from "fs";
 import { SlashCommandBuilder } from "@discordjs/builders"
 import { REST } from "@discordjs/rest"
 import { Routes } from "discord-api-types/v9"
-import client from "./index";
+import client from "../index";
 import dotenv from "dotenv"
 
 const clientId = client.user.id
@@ -17,13 +17,13 @@ dotenv.config();
 //Gets slash commands
 const commands = [];
 const cmdFiles = fs
-  .readdirSync(`${__dirname}/commands`)
+  .readdirSync(`./dist/src/commands`)
   .filter((file) => file.endsWith(".js"));
 
 const rest = new REST({ version: "9" }).setToken(process.env.TOKEN!);
 
 for (const file of cmdFiles) {
-  const command = require(`${__dirname}/commands/${file}`);
+  const command = require(`./dist/src/commands/${file}`);
   commands.push(command.data.toJSON());
 }
 
