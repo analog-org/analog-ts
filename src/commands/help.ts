@@ -2,7 +2,6 @@ import { Interaction, MessageEmbed, CommandInteractionOptionResolver, Message, C
 
 import {SlashCommandBuilder, SlashCommandStringOption} from '@discordjs/builders';
 
-
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('help')
@@ -20,15 +19,15 @@ module.exports = {
 
         const embed = new MessageEmbed()
                   .setColor(`${embedColor}`)
-                  .setTitle(`${client.user.username}'s commands`)
+                  .setTitle(`${client.user?.username}'s commands`)
                   .setDescription(`${commandsList}`)
-                  .setThumbnail(client.user.avatarURL({dynamic:true}))
+                  .setThumbnail(client.user?.avatarURL({dynamic:true})!)
         
         await interaction.reply({embeds: [embed]}) 
           
         
 
-        console.log(`${interaction.user.tag} did /help in ${interaction.channel.name} in guild ${interaction.guild.name}`)    
+            
         } catch(error) {
             await interaction.reply({ content: 'This server has 0 commands', ephemeral: true })
             console.error(error)
