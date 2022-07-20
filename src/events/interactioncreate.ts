@@ -14,7 +14,9 @@ module.exports = {
         case "GUILD_NEWS_THREAD":
         case "GUILD_PUBLIC_THREAD":
         case "GUILD_PRIVATE_THREAD":
-          
+          console.log(
+            `${interaction.createdAt} ${interaction.user.tag} in #${interaction.channel.parent?.name} in thread ${interaction.channel.name} triggered a ${interaction.type} called ${interaction.commandName}.`
+          );
       }
     }
   },
