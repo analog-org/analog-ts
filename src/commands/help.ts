@@ -1,4 +1,4 @@
-import { Interaction, MessageEmbed, CommandInteractionOptionResolver, Message } from "discord.js";
+import { Interaction, MessageEmbed, CommandInteractionOptionResolver, Message, CommandInteraction, ApplicationCommand } from "discord.js";
 
 import {SlashCommandBuilder, SlashCommandStringOption} from '@discordjs/builders';
 
@@ -16,7 +16,7 @@ module.exports = {
         const client = interaction.client
         const cmd = await client.application.commands.fetch()
             
-        commandsList = cmd.map(cmd => `**/${cmd.name}** - ${cmd.description}`).join('\n')
+        commandsList = cmd.map((cmd: ApplicationCommand) => `**/${cmd.name}** - ${cmd.description}`).join('\n')
 
         const embed = new MessageEmbed()
                   .setColor(`${embedColor}`)
