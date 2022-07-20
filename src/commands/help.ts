@@ -7,7 +7,7 @@ module.exports = {
         .setName('help')
         .setDescription('shows a list of commands for the bot'),
     
-    async execute(interaction: Interaction) {
+    async execute(interaction: CommandInteraction) {
 
         
     try {
@@ -18,7 +18,7 @@ module.exports = {
         commandsList = cmd?.map((cmd: ApplicationCommand) => `**/${cmd.name}** - ${cmd.description}`).join('\n')
 
         const embed = new MessageEmbed()
-                  .setColor(`${embedColor}`)
+                  .setColor(`#6bde36`)
                   .setTitle(`${client.user?.username}'s commands`)
                   .setDescription(`${commandsList}`)
                   .setThumbnail(client.user?.avatarURL({dynamic:true})!)
