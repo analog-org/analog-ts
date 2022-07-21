@@ -76,4 +76,6 @@ client.on("interactionCreate", async (interaction: Interaction) => {
 });
 //This is what logs the bot in
 client.login(process.env.TOKEN);
-regCMD()
+client.on("ready", async () => {
+  regCMD();
+});
