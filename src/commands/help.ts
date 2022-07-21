@@ -24,10 +24,7 @@ module.exports = {
                   .setThumbnail(client.user?.avatarURL({dynamic:true})!)
         
         await interaction.reply({embeds: [embed]}) 
-          
-        
 
-            
         } catch(error) {
             await interaction.reply({ content: 'This server has 0 commands', ephemeral: true })
             console.error(error)
