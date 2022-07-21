@@ -28,7 +28,9 @@ for (const file of cmdFiles) {
 }
 
 // This actually registers the slash commands into the guild
-rest
+const regCMD = rest
   .put(Routes.applicationCommands(clientId), { body: commands })
   .then(() => console.log("Successfully registered application commands."))
   .catch(console.error);
+
+export default regCMD
