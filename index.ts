@@ -12,7 +12,7 @@ import dotenv from "dotenv";
 import regCMD from "./src/deploy-commands";
 
 dotenv.config();
-const client: any = new Client({
+export const client: any = new Client({
   intents: [
     Intents.FLAGS.GUILDS,
     Intents.FLAGS.GUILD_MESSAGES,
@@ -27,7 +27,7 @@ const client: any = new Client({
   ],
 });
 
-export default client;
+
 
 client.commands = new Collection();
 
@@ -36,11 +36,11 @@ client.commands = new Collection();
     The entire thing allows handling events to be as easy as adding it to the events folder and then restarting the bot
 */
 const eventFiles = fs
-  .readdirSync(`./dist/events`)
+  .readdirSync(`./src/events`)
   .filter((file) => file.endsWith(".js"));
 // This retrieves the event files and runs them if they should be run once or constantly ↓ this actually runs the event files code
 for (const file of eventFiles) {
-  const event = require(`./dist/events/${file}`);
+  const event = require(`./events/${file}`);
   if (event.once) {
     client.once(event.name, (...args: any) => event.execute(...args));
   } else {
@@ -49,11 +49,11 @@ for (const file of eventFiles) {
 }
 // This gets the command modules from the command folders
 const commandFiles = fs
-  .readdirSync(`./dist/src/commands`)
+  .readdirSync(`./src/commands`)
   .filter((file) => file.endsWith(".js"));
 
 for (const file of commandFiles) {
-  const command = require(`./dist/src/commands/${file}`);
+  const command = require(`./src/commands/${file}`);
   client.commands.set(command.data.name, command);
 }
 
@@ -77,5 +77,5 @@ client.on("interactionCreate", async (interaction: Interaction) => {
 //This is what logs the bot in
 client.login(process.env.TOKEN);
 client.on("ready", async () => {
-  regCMD();
+  regCMD(client.user.id);
 });
