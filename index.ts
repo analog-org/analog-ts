@@ -77,5 +77,6 @@ client.on("interactionCreate", async (interaction: Interaction) => {
 //This is what logs the bot in
 client.login(process.env.TOKEN);
 client.on("ready", async () => {
+  console.log(`The bot is up! Logged in as ${client.user?.tag} at ${client.readyAt}`);
   regCMD(client.user.id);
 });
