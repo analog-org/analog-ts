@@ -8,8 +8,9 @@ import {
   Interaction,
 } from "discord.js";
 import fs from "fs";
-import dotenv from "dotenv";
+import dotenv, { config } from "dotenv";
 import regCMD from "./src/deploy-commands";
+import registerCMD from "./config.json";
 
 dotenv.config();
 export const client: any = new Client({
@@ -26,8 +27,6 @@ export const client: any = new Client({
     "CHANNEL", // Required to receive DMs
   ],
 });
-
-
 
 client.commands = new Collection();
 
@@ -48,6 +47,7 @@ for (const file of eventFiles) {
   }
 }
 // This gets the command modules from the command folders
+const cmdPath = path.join(__dirname, "commands");
 const commandFiles = fs
   .readdirSync(`./src/commands`)
   .filter((file) => file.endsWith(".js"));
@@ -77,6 +77,10 @@ client.on("interactionCreate", async (interaction: Interaction) => {
 //This is what logs the bot in
 client.login(process.env.TOKEN);
 client.on("ready", async () => {
-  console.log(`The bot is up! Logged in as ${client.user?.tag} at ${client.readyAt}`);
-  regCMD(client.user.id);
+  console.log(
+    `The bot is up! Logged in as ${client.user?.tag} at ${client.readyAt}`
+  );
+  if (registerCMD) {
+    regCMD(client.user.id);
+  }
 });
