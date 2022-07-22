@@ -11,6 +11,7 @@ import fs from "fs";
 import dotenv, { config } from "dotenv";
 import regCMD from "./src/deploy-commands";
 import registerCMD from "./config.json";
+import path from "node:path";
 
 dotenv.config();
 export const client: any = new Client({
@@ -47,13 +48,14 @@ for (const file of eventFiles) {
   }
 }
 // This gets the command modules from the command folders
-const cmdPath = path.join(__dirname, "commands");
+const cmdPath = path.join(__dirname, "src/commands");
 const commandFiles = fs
-  .readdirSync(`./src/commands`)
+  .readdirSync(cmdPath)
   .filter((file) => file.endsWith(".js"));
 
 for (const file of commandFiles) {
-  const command = require(`./src/commands/${file}`);
+  const filePath = path.join(cmdPath, file)
+  const command = require(filePath);
   client.commands.set(command.data.name, command);
 }
 
