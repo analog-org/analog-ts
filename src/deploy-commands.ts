@@ -2,6 +2,7 @@
 
 // const fs = require("fs");
 import fs from "fs";
+import path from "node:path";
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { REST } from "@discordjs/rest";
 import { Routes } from "discord-api-types/v9";
@@ -14,6 +15,7 @@ const regCMD = (clientId: string) => {
 
   //Gets slash commands
   const commands: any[] = [];
+  const cmdPath = path.join(__dirname, "commands");
   const cmdFiles = fs
     .readdirSync(`./commands`)
     .filter((file) => file.endsWith(".js"));
