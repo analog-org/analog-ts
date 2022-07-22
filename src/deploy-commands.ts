@@ -17,7 +17,7 @@ const regCMD = (clientId: string) => {
   const commands: any[] = [];
   const cmdPath = path.join(__dirname, "commands");
   const cmdFiles = fs
-    .readdirSync(`./commands`)
+    .readdirSync(cmdPath)
     .filter((file) => file.endsWith(".js"));
 
   const rest = new REST({ version: "9" }).setToken(process.env.TOKEN!);
