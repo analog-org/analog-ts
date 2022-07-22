@@ -40,7 +40,7 @@ const eventFiles = fs
   .filter((file) => file.endsWith(".js"));
 // This retrieves the event files and runs them if they should be run once or constantly ↓ this actually runs the event files code
 for (const file of eventFiles) {
-  const event = require(`./events/${file}`);
+  const event = require(`./src/events/${file}`);
   if (event.once) {
     client.once(event.name, (...args: any) => event.execute(...args));
   } else {
