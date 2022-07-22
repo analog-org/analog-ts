@@ -35,12 +35,14 @@ client.commands = new Collection();
     The following code below takes all the events in the events folder and put it in an array and filters it by .js files
     The entire thing allows handling events to be as easy as adding it to the events folder and then restarting the bot
 */
+const eventPath = path.join(__dirname, "src/events")
 const eventFiles = fs
-  .readdirSync(`./src/events`)
+  .readdirSync(eventPath)
   .filter((file) => file.endsWith(".js"));
 // This retrieves the event files and runs them if they should be run once or constantly ↓ this actually runs the event files code
 for (const file of eventFiles) {
-  const event = require(`./src/events/${file}`);
+  const filePath = path.join(eventPath, file)
+  const event = require(filePath);
   if (event.once) {
     client.once(event.name, (...args: any) => event.execute(...args));
   } else {
