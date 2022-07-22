@@ -23,7 +23,8 @@ const regCMD = (clientId: string) => {
   const rest = new REST({ version: "9" }).setToken(process.env.TOKEN!);
 
   for (const file of cmdFiles) {
-    const command = require(`./commands/${file}`);
+    const filePath = path.join(cmdPath, file)
+    const command = require(filePath)
     commands.push(command.data.toJSON());
   }
 
