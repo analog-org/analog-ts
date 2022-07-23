@@ -6,11 +6,12 @@ import {
   ClientApplication,
   InteractionType,
   Interaction,
+  CommandInteraction,
 } from "discord.js";
 import fs from "fs";
 import dotenv, { config } from "dotenv";
 import regCMD from "./src/deploy-commands";
-import registerCMD from "./config.json";
+import registerCMD from "./devconfig.json";
 import path from "node:path";
 
 dotenv.config();
@@ -29,7 +30,7 @@ export const client: any = new Client({
   ],
 });
 
-client.commands = new Collection();
+
 
 /* 
     The following code below takes all the events in the events folder and put it in an array and filters it by .js files
@@ -49,6 +50,8 @@ for (const file of eventFiles) {
     client.on(event.name, (...args: any) => event.execute(...args));
   }
 }
+
+client.commands = new Collection();
 // This gets the command modules from the command folders
 const cmdPath = path.join(__dirname, "src/commands");
 const commandFiles = fs
@@ -62,8 +65,8 @@ for (const file of commandFiles) {
 }
 
 // This executes slash commands when a player does a slash command
-client.on("interactionCreate", async (interaction: Interaction) => {
-  if (!interaction.isCommand() || !interaction.isContextMenu()) return;
+client.on("interactionCreate", async (interaction: CommandInteraction) => {
+  
 
   const command = client.commands.get(interaction.commandName);
 
@@ -78,13 +81,14 @@ client.on("interactionCreate", async (interaction: Interaction) => {
     });
   }
 });
+
 //This is what logs the bot in
 client.login(process.env.TOKEN);
 client.on("ready", async () => {
   console.log(
     `The bot is up! Logged in as ${client.user?.tag} at ${client.readyAt}`
   );
-  if (registerCMD) {
+  if ((registerCMD as unknown as boolean) === true) {
     regCMD(client.user.id);
-  }
+  } 
 });
