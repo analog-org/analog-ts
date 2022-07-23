@@ -30,8 +30,7 @@ const regCMD = (clientId: string) => {
 
   rest
     .put(Routes.applicationCommands(clientId), { body: commands })
-    .then(() => console.log(commands))
-    .then(() => console.log("Successfully registered application commands."))
+    .then(() => console.log(`Successfully registered ${commands.length} application commands.`))
     .catch(console.error);
 };
 
