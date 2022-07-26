@@ -11,7 +11,7 @@ import {
 import fs from "fs";
 import dotenv, { config } from "dotenv";
 import regCMD from "./src/deploy-commands";
-import registerCMD from "./devconfig.json";
+import devConfig from "./devconfig.json";
 import path from "node:path";
 
 dotenv.config();
@@ -88,7 +88,7 @@ client.on("ready", async () => {
   console.log(
     `The bot is up! Logged in as ${client.user?.tag} at ${client.readyAt}`
   );
-  if ((registerCMD as unknown as boolean) === true) {
+  if (devConfig.registerCmd  === true) {
     regCMD(client.user.id);
   } 
 });
