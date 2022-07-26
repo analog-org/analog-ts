@@ -1,12 +1,13 @@
 //dependancy for discordjs
 import {
   Client,
-  Intents,
+  GatewayIntentBits,
   Collection,
   ClientApplication,
   InteractionType,
   Interaction,
   CommandInteraction,
+  PartialUser,
 } from "discord.js";
 import fs from "fs";
 import dotenv, { config } from "dotenv";
