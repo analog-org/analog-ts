@@ -31,7 +31,7 @@ module.exports = {
         .setColor(`#6bde36`)
         .setTitle(`${client.user?.username}'s commands`)
         .setDescription(`${commandsList}`)
-        .setThumbnail(client.user?.avatarURL({ dynamic: true })!);
+        .setThumbnail(client.user?.avatarURL({ forceStatic: false })!);
 
       await interaction.reply({ embeds: [embed] });
     } catch (error) {
