@@ -11,7 +11,7 @@ import {
 import fs from "fs";
 import dotenv, { config } from "dotenv";
 import regCMD from "./src/deploy-commands";
-import devConfig from "./devconfig.json";
+import { devConfig } from "./devconfig"
 import path from "node:path";
 
 dotenv.config();
