@@ -4,7 +4,7 @@ import { CommandInteraction, Interaction, InteractionType } from "discord.js";
 module.exports = {
   name: "interactionCreate",
   execute(interaction: Interaction) {
-    if (interaction.isCommand() || interaction.isContextMenu()) {
+    if (interaction.type === InteractionType.ApplicationCommand) {
       switch (interaction.channel?.type) {
         case "GUILD_TEXT":
         case "GUILD_NEWS":
