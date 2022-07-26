@@ -1,6 +1,6 @@
 import {
   Interaction,
-  MessageEmbed,
+  EmbedBuilder,
   CommandInteractionOptionResolver,
   Message,
   CommandInteraction,
@@ -27,7 +27,7 @@ module.exports = {
         )
         .join("\n");
 
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
         .setColor(`#6bde36`)
         .setTitle(`${client.user?.username}'s commands`)
         .setDescription(`${commandsList}`)
