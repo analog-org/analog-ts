@@ -5,12 +5,10 @@ import {
   Message,
   CommandInteraction,
   ApplicationCommand,
+  SlashCommandBuilder,
+  SlashCommandStringOption
 } from "discord.js";
 
-import {
-  SlashCommandBuilder,
-  SlashCommandStringOption,
-} from "@discordjs/builders";
 
 module.exports = {
   data: new SlashCommandBuilder()
