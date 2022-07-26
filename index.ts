@@ -7,7 +7,7 @@ import {
   InteractionType,
   Interaction,
   CommandInteraction,
-  PartialUser,
+  Partials,
 } from "discord.js";
 import fs from "fs";
 import dotenv, { config } from "dotenv";
@@ -27,7 +27,7 @@ export const client: any = new Client({
     GatewayIntentBits.DirectMessageTyping,
   ],
   partials: [
-    "CHANNEL", // Required to receive DMs
+    Partials.Channel, // Required to receive DMs
   ],
 });
 
