@@ -37,3 +37,6 @@ npm i
 ```sh
 npm start
 ```
+
+## Bots using Analog.ts
+- [S.I.M.P.S Discord bot](https://github.com/simpsmc/discordbot)
