@@ -21,3 +21,19 @@
   <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/w/ana-log/analog-ts?style=flat-square">
   <img alt="GitHub issues" src="https://img.shields.io/github/issues/ana-log/analog-ts?style=flat-square">
 </div>
+
+## Getting Started 
+
+```sh
+git clone https://github.com/ana-log/analog-ts.git
+cd analog-ts
+npm i
+```
+- Copy `.env.example` and paste it in the main directory
+- Rename it to just `.env`
+- Put your bot token in `TOKEN=` 
+- Example `TOKEN=239ung2389g-0n2q9gjn20-g98n293838h9wg2a-awjj`
+- To start the bot do ↓
+```sh
+npm start
+```
