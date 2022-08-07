@@ -65,7 +65,7 @@ for (const file of commandFiles) {
   client.commands.set(command.data.name, command);
 }
 
-// This executes slash commands when a player does a slash command
+// This executes an Application commands when a player does a Application command
 client.on("interactionCreate", async (interaction: CommandInteraction) => {
   
 
