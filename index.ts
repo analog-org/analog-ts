@@ -70,6 +70,12 @@ for (const folder of componentFolders) {
         buttons.set(button.data.name, button);
       }
       break;
+    case "modals":
+      for (const file of componentFiles) {
+        const modal = require(`${__dirname}/${folder}/${file}`);
+        modals.set(modal.data.name, modal);
+      }
+      break;
   }
 }
 
