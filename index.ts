@@ -124,6 +124,19 @@ client.on(
           ephemeral: true,
         });
       }
+    } else if (interaction.type === InteractionType.ModalSubmit) {
+      const { customId } = interaction;
+      const modal = modals.get(interaction);
+
+      try {
+        await modal.execute(interaction);
+      } catch (error) {
+        console.error(error);
+        await interaction.reply({
+          content: "There was an error while submitting this modal!",
+          ephemeral: true,
+        });
+      }
     }
   }
 );
