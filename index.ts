@@ -54,15 +54,24 @@ client.buttons = new Collection();
 client.modals = new Collection();
 client.selectmenus = new Collection();
 
-const { buttons, modals, selectmenus } = client;
+
 const compPath = path.join(__dirname, "src/components");
 const componentFolders = readdirSync(compPath);
+const { buttons, modals, selectmenus } = client;
 
 for (const folder of componentFolders) {
   const componentFiles = readdirSync(`${compPath}/${folder}`).filter((file) => {
     file.endsWith(".js");
   });
+
+  switch (folder) {
+    
+  }
 }
+
+
+
+
 
 client.commands = new Collection();
 // This gets the command modules from the command folders
