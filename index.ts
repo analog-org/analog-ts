@@ -120,7 +120,7 @@ client.on(
       } catch (error) {
         console.error(error);
         await interaction.reply({
-          content: "There was an error while pressing this button!",
+          content: "There was an error while selecting this option!",
           ephemeral: true,
         });
       }
