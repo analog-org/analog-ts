@@ -8,6 +8,9 @@ import {
   Interaction,
   CommandInteraction,
   Partials,
+  ButtonInteraction,
+  ModalSubmitInteraction,
+  SelectMenuInteraction,
 } from "discord.js";
 import fs, { read, readdirSync } from "fs";
 import dotenv, { config } from "dotenv";
@@ -86,6 +89,10 @@ for (const folder of componentFolders) {
       break;
   }
 }
+
+client.on('interactionCreate', async (interaction: ButtonInteraction | ModalSubmitInteraction | SelectMenuInteraction) => {
+  
+})
 
 client.commands = new Collection();
 // This gets the command modules from the command folders
