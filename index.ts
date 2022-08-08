@@ -55,11 +55,11 @@ for (const file of eventFiles) {
 
 client.buttons = new Collection();
 client.modals = new Collection();
-client.selectmenus = new Collection();
+client.selectMenus = new Collection();
 
 const compPath = path.join(__dirname, "src/components");
 const componentFolders = readdirSync(compPath);
-const { buttons, modals, selectmenus } = client;
+const { buttons, modals, selectMenus } = client;
 
 for (const folder of componentFolders) {
   const componentFiles = readdirSync(`${compPath}/${folder}`).filter((file) => {
@@ -79,10 +79,10 @@ for (const folder of componentFolders) {
         modals.set(modal.data.name, modal);
       }
       break;
-    case "selectmenus":
+    case "selectMenus":
       for (const file of componentFiles) {
         const selectmenu = require(`${__dirname}/${folder}/${file}`);
-        selectmenus.set(selectmenu.data.name, selectmenu);
+        selectMenus.set(selectmenu.data.name, selectmenu);
       }
       break;
     default:
@@ -107,7 +107,20 @@ client.on(
       } catch (error) {
         console.error(error);
         await interaction.reply({
-          content: "There was an error while executing this command!",
+          content: "There was an error while pressing this button!",
+          ephemeral: true,
+        });
+      }
+    } else if (interaction.isSelectMenu()) {
+      const { customId } = interaction;
+      const selectMenu = selectMenus.get(interaction);
+
+      try {
+        await selectMenu.execute(interaction);
+      } catch (error) {
+        console.error(error);
+        await interaction.reply({
+          content: "There was an error while pressing this button!",
           ephemeral: true,
         });
       }
