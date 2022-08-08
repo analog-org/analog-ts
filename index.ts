@@ -82,6 +82,8 @@ for (const folder of componentFolders) {
         selectmenus.set(selectmenu.data.name, selectmenu);
       }
       break;
+    default:
+      break;
   }
 }
 
