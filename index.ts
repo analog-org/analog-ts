@@ -54,7 +54,6 @@ client.buttons = new Collection();
 client.modals = new Collection();
 client.selectmenus = new Collection();
 
-
 const compPath = path.join(__dirname, "src/components");
 const componentFolders = readdirSync(compPath);
 const { buttons, modals, selectmenus } = client;
@@ -65,17 +64,14 @@ for (const folder of componentFolders) {
   });
 
   switch (folder) {
-    case 'buttons':
-      for (const file of componentFiles){
-        const button = require(`${__dirname}/${folder}/${file}`)
-        buttons.set(button.data.name, button)
+    case "buttons":
+      for (const file of componentFiles) {
+        const button = require(`${__dirname}/${folder}/${file}`);
+        buttons.set(button.data.name, button);
       }
+      break;
   }
 }
-
-
-
-
 
 client.commands = new Collection();
 // This gets the command modules from the command folders
