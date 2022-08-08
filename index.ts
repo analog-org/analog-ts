@@ -65,7 +65,11 @@ for (const folder of componentFolders) {
   });
 
   switch (folder) {
-    
+    case 'buttons':
+      for (const file of componentFiles){
+        const button = require(`${__dirname}/${folder}/${file}`)
+        buttons.set(button.data.name, button)
+      }
   }
 }
 
