@@ -50,6 +50,12 @@ for (const file of eventFiles) {
   }
 }
 
+client.buttons = new Collection()
+client.modals = new Collection()
+client.selectmenus = new Collection()
+
+const { buttons, modals, selectmenus } = client
+
 client.commands = new Collection();
 // This gets the command modules from the command folders
 const cmdPath = path.join(__dirname, "src/commands");
