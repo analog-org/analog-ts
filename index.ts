@@ -90,9 +90,30 @@ for (const folder of componentFolders) {
   }
 }
 
-client.on('interactionCreate', async (interaction: ButtonInteraction | ModalSubmitInteraction | SelectMenuInteraction) => {
-  
-})
+client.on(
+  "interactionCreate",
+  async (
+    interaction:
+      | ButtonInteraction
+      | ModalSubmitInteraction
+      | SelectMenuInteraction
+  ) => {
+    if (interaction.isButton()) {
+      const { customId } = interaction;
+      const button = buttons.get(customId);
+
+      try {
+        await button.execute(interaction);
+      } catch (error) {
+        console.error(error);
+        await interaction.reply({
+          content: "There was an error while executing this command!",
+          ephemeral: true,
+        });
+      }
+    }
+  }
+);
 
 client.commands = new Collection();
 // This gets the command modules from the command folders
