@@ -76,6 +76,12 @@ for (const folder of componentFolders) {
         modals.set(modal.data.name, modal);
       }
       break;
+    case "selectmenus":
+      for (const file of componentFiles) {
+        const selectmenu = require(`${__dirname}/${folder}/${file}`);
+        selectmenus.set(selectmenu.data.name, selectmenu);
+      }
+      break;
   }
 }
 
