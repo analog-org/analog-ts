@@ -10,7 +10,7 @@ import { client } from "../index";
 import dotenv from "dotenv";
 
 dotenv.config();
-const regCMD = (clientId: string) => {
+export const regCMD = (clientId: string) => {
   // dotenv dependancy
 
   //Gets slash commands
@@ -23,15 +23,28 @@ const regCMD = (clientId: string) => {
   const rest = new REST({ version: "9" }).setToken(process.env.TOKEN!);
 
   for (const file of cmdFiles) {
-    const filePath = path.join(cmdPath, file)
-    const command = require(filePath)
+    const filePath = path.join(cmdPath, file);
+    const command = require(filePath);
     commands.push(command.data.toJSON());
   }
 
   rest
     .put(Routes.applicationCommands(clientId), { body: commands })
-    .then(() => console.log(`Successfully registered ${commands.length} application commands.`))
+    .then(() =>
+      console.log(
+        `Successfully registered ${commands.length} application commands.`
+      )
+    )
     .catch(console.error);
 };
 
-export default regCMD;
+export const deleteCMD = (clientId: string) => {
+  const rest = new REST({ version: "9" }).setToken(process.env.TOKEN!);
+
+  rest
+    .put(Routes.applicationCommands(clientId), { body: [] })
+    .then(() => console.log(`Successfully deleted all application commands.`))
+    .catch(console.error);
+};
+
+
