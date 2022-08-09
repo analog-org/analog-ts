@@ -10,6 +10,7 @@ import {
   ActionRowBuilder,
   ButtonBuilder,
   ButtonStyle,
+  MessageActionRowComponentBuilder,
 } from "discord.js";
 
 module.exports = {
@@ -29,7 +30,7 @@ module.exports = {
         )
         .join("\n");
 
-      const row = new ActionRowBuilder().addComponents(
+      const row = new ActionRowBuilder<MessageActionRowComponentBuilder>().addComponents(
         new ButtonBuilder()
           .setCustomId("botInfo")
           .setEmoji("🤖")
