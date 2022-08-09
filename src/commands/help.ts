@@ -6,7 +6,9 @@ import {
   CommandInteraction,
   ApplicationCommand,
   SlashCommandBuilder,
-  SlashCommandStringOption
+  SlashCommandStringOption,
+  ActionRowBuilder,
+  ButtonBuilder
 } from "discord.js";
 
 
@@ -26,7 +28,11 @@ module.exports = {
           (cmd: ApplicationCommand) => `**/${cmd.name}** - ${cmd.description}`
         )
         .join("\n");
-
+      const row = new ActionRowBuilder()
+          .addComponents(
+            new ButtonBuilder()
+              
+          )
       const embed = new EmbedBuilder()
         .setColor(`#6bde36`)
         .setTitle(`${client.user?.username}'s commands`)
