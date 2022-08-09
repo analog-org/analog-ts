@@ -1,9 +1,10 @@
+import { ButtonInteraction } from "discord.js";
 
 module.exports = {
   data: {
     name: `botInfo`
   },
-  async execute() {
-    
+  async execute(interaction: ButtonInteraction) {
+
   }
 }
