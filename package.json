@@ -7,7 +7,8 @@
     "lint": "eslint . --ext .ts",
     "watch": "tsc -w",
     "start": "tsc && node dist/index.js",
-    "build": "tsc"
+    "build": "tsc",
+    "delete-cmds": "node dist/src/delete-commands.js"
   },
   "author": "",
   "license": "ISC",
