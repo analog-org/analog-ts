@@ -9,9 +9,8 @@ import {
   SlashCommandStringOption,
   ActionRowBuilder,
   ButtonBuilder,
-  ButtonStyle
+  ButtonStyle,
 } from "discord.js";
-
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -29,21 +28,22 @@ module.exports = {
           (cmd: ApplicationCommand) => `**/${cmd.name}** - ${cmd.description}`
         )
         .join("\n");
-      const row = new ActionRowBuilder()
-          .addComponents(
-            new ButtonBuilder()
-              .setCustomId('botInfo')
-              .setEmoji('🤖')
-              .setStyle(ButtonStyle.Primary)
-              .setLabel('Bot Info')
-          )
+
+      const row = new ActionRowBuilder().addComponents(
+        new ButtonBuilder()
+          .setCustomId("botInfo")
+          .setEmoji("🤖")
+          .setStyle(ButtonStyle.Primary)
+          .setLabel("Bot Info"),
+      );
+
       const embed = new EmbedBuilder()
         .setColor(`#6bde36`)
         .setTitle(`${client.user?.username}'s commands`)
         .setDescription(`${commandsList}`)
         .setThumbnail(client.user?.avatarURL({ forceStatic: false })!);
 
-      await interaction.reply({ embeds: [embed] });
+      await interaction.reply({ embeds: [embed], components: [row] });
     } catch (error) {
       await interaction.reply({
         content: "This server has 0 commands",
