@@ -38,13 +38,6 @@ export const regCMD = (clientId: string) => {
     .catch(console.error);
 };
 
-export const deleteCMD = (clientId: string) => {
-  const rest = new REST({ version: "9" }).setToken(process.env.TOKEN!);
 
-  rest
-    .put(Routes.applicationCommands(clientId), { body: [] })
-    .then(() => console.log(`Successfully deleted all application commands.`))
-    .catch(console.error);
-};
 
 
