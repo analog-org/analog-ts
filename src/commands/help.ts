@@ -8,7 +8,8 @@ import {
   SlashCommandBuilder,
   SlashCommandStringOption,
   ActionRowBuilder,
-  ButtonBuilder
+  ButtonBuilder,
+  ButtonStyle
 } from "discord.js";
 
 
@@ -31,7 +32,10 @@ module.exports = {
       const row = new ActionRowBuilder()
           .addComponents(
             new ButtonBuilder()
-              
+              .setCustomId('botInfo')
+              .setEmoji('🤖')
+              .setStyle(ButtonStyle.Primary)
+              .setLabel('Bot Info')
           )
       const embed = new EmbedBuilder()
         .setColor(`#6bde36`)
