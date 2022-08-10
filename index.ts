@@ -52,6 +52,39 @@ for (const file of eventFiles) {
     client.on(event.name, (...args: any) => event.execute(...args));
   }
 }
+console.log(eventFiles);
+console.log(eventPath);
+
+client.commands = new Collection();
+// This gets the command modules from the command folders
+const cmdPath = path.join(__dirname, "src/commands");
+const commandFiles = fs
+  .readdirSync(cmdPath)
+  .filter((file) => file.endsWith(".js"));
+console.log(commandFiles);
+console.log(cmdPath);
+for (const file of commandFiles) {
+  const filePath = path.join(cmdPath, file);
+  const command = require(filePath);
+
+  client.commands.set(command.data.name, command);
+}
+
+// This executes an Application commands when a player does a Application command
+client.on("interactionCreate", async (interaction: CommandInteraction) => {
+  const command = client.commands.get(interaction.commandName);
+
+  if (!command) return;
+
+  try {
+    await command.execute(interaction);
+  } catch (error) {
+    await interaction.reply({
+      content: "There was an error while executing this command!",
+      ephemeral: true,
+    });
+  }
+});
 
 client.buttons = new Collection();
 client.modals = new Collection();
@@ -59,29 +92,35 @@ client.selectMenus = new Collection();
 
 const compPath = path.join(__dirname, "src/components");
 const componentFolders = readdirSync(compPath);
-const { buttons, modals, selectMenus } = client;
+const { modals, selectMenus } = client;
 
 for (const folder of componentFolders) {
-  const componentFiles = readdirSync(`${compPath}/${folder}`).filter((file) => {
-    file.endsWith(".js");
-  });
-
+  const comps = path.join(compPath, folder);
+  const componentFiles = readdirSync(comps).filter((file) =>
+    file.endsWith(".js")
+  );
+  console.log(componentFiles);
+  console.log(comps);
   switch (folder) {
     case "buttons":
       for (const file of componentFiles) {
-        const button = require(`${__dirname}/${folder}/${file}`);
-        buttons.set(button.data.name, button);
+        const filePath = path.join(compPath, folder, file);
+        const button = require(filePath);
+        console.log(filePath);
+        client.buttons.set(button.data.name, button);
       }
       break;
     case "modals":
       for (const file of componentFiles) {
-        const modal = require(`${__dirname}/${folder}/${file}`);
+        const filePath = path.join(compPath, folder, file);
+        const modal = require(filePath);
         modals.set(modal.data.name, modal);
       }
       break;
     case "selectMenus":
       for (const file of componentFiles) {
-        const selectmenu = require(`${__dirname}/${folder}/${file}`);
+        const filePath = path.join(compPath, folder, file);
+        const selectmenu = require(filePath);
         selectMenus.set(selectmenu.data.name, selectmenu);
       }
       break;
@@ -99,8 +138,8 @@ client.on(
       | SelectMenuInteraction
   ) => {
     if (interaction.isButton()) {
-      const { customId } = interaction;
-      const button = buttons.get(customId);
+      const button = client.buttons.get(interaction.customId);
+      console.log(interaction);
 
       try {
         await button.execute(interaction);
@@ -112,8 +151,7 @@ client.on(
         });
       }
     } else if (interaction.isSelectMenu()) {
-      const { customId } = interaction;
-      const selectMenu = selectMenus.get(interaction);
+      const selectMenu = selectMenus.get(interaction.customId);
 
       try {
         await selectMenu.execute(interaction);
@@ -140,35 +178,6 @@ client.on(
     }
   }
 );
-
-client.commands = new Collection();
-// This gets the command modules from the command folders
-const cmdPath = path.join(__dirname, "src/commands");
-const commandFiles = fs
-  .readdirSync(cmdPath)
-  .filter((file) => file.endsWith(".js"));
-
-for (const file of commandFiles) {
-  const filePath = path.join(cmdPath, file);
-  const command = require(filePath);
-  client.commands.set(command.data.name, command);
-}
-
-// This executes an Application commands when a player does a Application command
-client.on("interactionCreate", async (interaction: CommandInteraction) => {
-  const command = client.commands.get(interaction.commandName);
-
-  if (!command) return;
-
-  try {
-    await command.execute(interaction);
-  } catch (error) {
-    await interaction.reply({
-      content: "There was an error while executing this command!",
-      ephemeral: true,
-    });
-  }
-});
 
 //This is what logs the bot in
 client.login(process.env.TOKEN);
