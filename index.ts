@@ -52,8 +52,7 @@ for (const file of eventFiles) {
     client.on(event.name, (...args: any) => event.execute(...args));
   }
 }
-console.log(eventFiles);
-console.log(eventPath);
+
 
 client.commands = new Collection();
 // This gets the command modules from the command folders
@@ -61,8 +60,7 @@ const cmdPath = path.join(__dirname, "src/commands");
 const commandFiles = fs
   .readdirSync(cmdPath)
   .filter((file) => file.endsWith(".js"));
-console.log(commandFiles);
-console.log(cmdPath);
+
 for (const file of commandFiles) {
   const filePath = path.join(cmdPath, file);
   const command = require(filePath);
@@ -99,14 +97,13 @@ for (const folder of componentFolders) {
   const componentFiles = readdirSync(comps).filter((file) =>
     file.endsWith(".js")
   );
-  console.log(componentFiles);
-  console.log(comps);
+  
   switch (folder) {
     case "buttons":
       for (const file of componentFiles) {
         const filePath = path.join(compPath, folder, file);
         const button = require(filePath);
-        console.log(filePath);
+        
         client.buttons.set(button.data.name, button);
       }
       break;
