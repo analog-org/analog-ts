@@ -15,15 +15,15 @@ module.exports = {
         .setThumbnail(client.user?.avatarURL({ forceStatic: false })!);
 
       const modal = new ModalBuilder()
-        .setTitle('What is your favorite song?')
+        .setTitle('Why do you feel that way?')
         .setCustomId('favSong')
         .setComponents(
           new ActionRowBuilder<ModalActionRowComponentBuilder>()
             .addComponents( 
               new TextInputBuilder()
-                .setLabel('Favorite Song')
+                .setLabel('Why do you feel that way?')
                 .setStyle(TextInputStyle.Paragraph)
-                .setPlaceholder('Favorite Song')
+                .setPlaceholder('Explain why you feel this way')
                 .setCustomId('favsong')
             )
         )
