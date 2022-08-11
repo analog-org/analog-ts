@@ -90,7 +90,7 @@ client.selectMenus = new Collection();
 
 const compPath = path.join(__dirname, "src/components");
 const componentFolders = readdirSync(compPath);
-const { modals, selectMenus } = client;
+
 
 for (const folder of componentFolders) {
   const comps = path.join(compPath, folder);
@@ -111,14 +111,14 @@ for (const folder of componentFolders) {
       for (const file of componentFiles) {
         const filePath = path.join(compPath, folder, file);
         const modal = require(filePath);
-        modals.set(modal.data.name, modal);
+        client.modals.set(modal.data.name, modal);
       }
       break;
     case "selectMenus":
       for (const file of componentFiles) {
         const filePath = path.join(compPath, folder, file);
         const selectmenu = require(filePath);
-        selectMenus.set(selectmenu.data.name, selectmenu);
+        client.selectMenus.set(selectmenu.data.name, selectmenu);
       }
       break;
     default:
@@ -148,7 +148,7 @@ client.on(
         });
       }
     } else if (interaction.isSelectMenu()) {
-      const selectMenu = selectMenus.get(interaction.customId);
+      const selectMenu = client.selectMenus.get(interaction.customId);
 
       try {
         await selectMenu.execute(interaction);
@@ -160,8 +160,8 @@ client.on(
         });
       }
     } else if (interaction.type === InteractionType.ModalSubmit) {
-      const { customId } = interaction;
-      const modal = modals.get(interaction);
+      
+      const modal = client.modals.get(interaction.customId);
 
       try {
         await modal.execute(interaction);
