@@ -19,15 +19,16 @@ module.exports = {
         .setCustomId('favSong')
         .setComponents(
           new ActionRowBuilder<ModalActionRowComponentBuilder>()
-            .addComponents(
+            .addComponents( 
               new TextInputBuilder()
                 .setLabel('Favorite Song')
                 .setStyle(TextInputStyle.Paragraph)
                 .setPlaceholder('Favorite Song')
+                .setCustomId('favsong')
             )
         )
-      await interaction.reply({ embeds: [embed] });
       
+      await interaction.showModal(modal)
     } catch (error) {
       await interaction.reply({
         content: "This server has 0 commands",
