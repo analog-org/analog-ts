@@ -136,7 +136,7 @@ client.on(
   ) => {
     if (interaction.isButton()) {
       const button = client.buttons.get(interaction.customId);
-      console.log(interaction);
+      
 
       try {
         await button.execute(interaction);
