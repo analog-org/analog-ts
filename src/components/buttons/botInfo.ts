@@ -19,7 +19,8 @@ module.exports = {
         new ActionRowBuilder<MessageActionRowComponentBuilder>().addComponents(
           new SelectMenuBuilder()
             .setCustomId("currentMood")
-            .setOptions([{ label: "happy", value: "option_one", emoji: "😃" }, { label: 'sad', value: 'option_two', emoji: "😭"}, { label: 'mischievous', value: 'option_three', emoji: "😈"}])
+            .setPlaceholder('Choose your mood')
+            .setOptions([{ label: "happy", value: "happy", emoji: "😃" }, { label: 'sad', value: 'sad', emoji: "😭"}, { label: 'mischievous', value: 'mischievous', emoji: "😈"}])
         );
       const embed = new EmbedBuilder()
         .setColor(`#6bde36`)
