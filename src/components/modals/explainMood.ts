@@ -3,15 +3,15 @@ import { client } from "../../../index";
 
 module.exports = {
   data: {
-    name: `favSong`,
+    name: `explainMood`,
   },
   async execute(interaction: ModalSubmitInteraction) {
     try {
       const embed = new EmbedBuilder()
-        .setColor(`#6bde36`)
-        .setTitle(`${client.user?.username}'s commands`)
-        .setDescription(`${client.user.username}`)
-        .setThumbnail(client.user?.avatarURL({ forceStatic: false })!);
+        .setColor("Random")
+        .setTitle(`${interaction.user.username}'s emotion`)
+        .setDescription(`${interaction.fields.getTextInputValue('explain_mood')}`)
+        .setThumbnail(interaction.user?.avatarURL({ forceStatic: false })!);
 
       await interaction.reply({ embeds: [embed] });
     } catch (error) {
