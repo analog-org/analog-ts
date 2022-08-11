@@ -16,7 +16,7 @@ module.exports = {
 
       const modal = new ModalBuilder()
         .setTitle('Why do you feel that way?')
-        .setCustomId('favSong')
+        .setCustomId('explainMood')
         .setComponents(
           new ActionRowBuilder<ModalActionRowComponentBuilder>()
             .addComponents( 
@@ -24,7 +24,7 @@ module.exports = {
                 .setLabel('Why do you feel that way?')
                 .setStyle(TextInputStyle.Paragraph)
                 .setPlaceholder('Explain why you feel this way')
-                .setCustomId('favsong')
+                .setCustomId('explain_mood')
             )
         )
       
