@@ -37,7 +37,16 @@ npm i
 ```sh
 npm start
 ```
-
+### If you want to setup a dev environment 
+1. Open up 2 Terminals in VS Code (or your IDE of choice)
+2. First terminal do `npm run watch`
+3. Second terminal do `npm run dev` 
+<br>
+<br>
+This should restart the bot everytime you make a code change
+<
+<br>
+**MAKE SURE `registerCmd` IN `devconfig.ts` IS SET TO FALSE WHILE IN DEV MODE, OTHERWISE DISCORD WILL RATELIMIT YOU!**
 ## Bots using Analog.ts
 - [S.I.M.P.S Discord bot](https://github.com/simpsmc/discordbot)
 - [Observer-Bot-TS](https://github.com/ComparatorCraftSMP/observer-bot-ts)
