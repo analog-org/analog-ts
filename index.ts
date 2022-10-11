@@ -81,6 +81,7 @@ client.on("interactionCreate", async (interaction: CommandInteraction) => {
       content: "There was an error while executing this command!",
       ephemeral: true,
     });
+    console.error(error)
   }
 });
 
@@ -158,6 +159,7 @@ client.on(
           content: "There was an error while selecting this option!",
           ephemeral: true,
         });
+        
       }
     } else if (interaction.type === InteractionType.ModalSubmit) {
       
