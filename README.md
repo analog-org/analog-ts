@@ -22,6 +22,22 @@
   <img alt="GitHub issues" src="https://img.shields.io/github/issues/ana-log/analog-ts?style=flat-square">
 </div>
 
+# Features
+- Uses functions and ESM modules instead of classes
+- [VSCode Extension](https://marketplace.visualstudio.com/items?itemName=BossDaily.analog-ts-snippets&ssr=false)
+
+# Supports
+- Slash Commands
+- Embeds
+- Buttons
+- Selection menus
+- Context menus
+- Modals
+- Events
+- Collections
+
+
+
 ## Getting Started 
 
 ```sh
