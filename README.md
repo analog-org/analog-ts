@@ -23,10 +23,20 @@
 </div>
 
 # Features
+- Discord.JS v14
 - Uses functions and ESM modules instead of classes
 - [VSCode Extension](https://marketplace.visualstudio.com/items?itemName=BossDaily.analog-ts-snippets&ssr=false)
+- Command Handler
+- Context Menu Handler
+- Event Handler
+- Button handler
+- Modal handler
+- Select Menu Handler
+
 
 # Supports
+- Supports Discord.JS v14 (not v13)
+- discord-api-types
 - Slash Commands
 - Embeds
 - Buttons
