@@ -40,3 +40,4 @@ npm start
 
 ## Bots using Analog.ts
 - [S.I.M.P.S Discord bot](https://github.com/simpsmc/discordbot)
+- [Observer-Bot-TS](https://github.com/ComparatorCraftSMP/observer-bot-ts)
