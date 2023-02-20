@@ -22,12 +22,14 @@ dotenv.config();
 export const client: any = new Client({
   intents: [
     GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMembers,
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.GuildMessageReactions,
     GatewayIntentBits.GuildMessageTyping,
     GatewayIntentBits.DirectMessages,
     GatewayIntentBits.DirectMessageReactions,
     GatewayIntentBits.DirectMessageTyping,
+    GatewayIntentBits.GuildEmojisAndStickers,
   ],
   partials: [
     Partials.Channel, // Required to receive DMs
