@@ -160,9 +160,9 @@ client.on(
       | SelectMenuInteraction
   ) => {
     if (interaction.isButton()) {
-      const button = client.buttons.get(interaction.customId);
-      
 
+      const button = client.buttons.get(interaction.customId);
+      if(!button) return;
       try {
         await button.execute(interaction);
       } catch (error) {
@@ -172,9 +172,9 @@ client.on(
           ephemeral: true,
         });
       }
-    } else if (interaction.isSelectMenu()) {
+    } else if (interaction.isAnySelectMenu()) {
       const selectMenu = client.selectMenus.get(interaction.customId);
-
+      if(!selectMenu) return;
       try {
         await selectMenu.execute(interaction);
       } catch (error) {
@@ -183,12 +183,10 @@ client.on(
           content: "There was an error while selecting this option!",
           ephemeral: true,
         });
-        
       }
-    } else if (interaction.type === InteractionType.ModalSubmit) {
-      
+    } else if (interaction.isModalSubmit()) {
       const modal = client.modals.get(interaction.customId);
-
+      if(!modal) return;
       try {
         await modal.execute(interaction);
       } catch (error) {
