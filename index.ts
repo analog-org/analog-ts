@@ -17,6 +17,8 @@ import dotenv, { config } from "dotenv";
 import { regCMD } from "./src/deploy-commands";
 import { devConfig } from "./devconfig";
 import path from "node:path";
+import cron from "node-cron";
+
 
 export type TaskFunction = () => void;
 

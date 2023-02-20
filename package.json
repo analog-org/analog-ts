@@ -25,6 +25,7 @@
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-jsdoc": "^40.0.0",
+    "node-cron": "^3.0.2",
     "node-fetch": "^3.3.0",
     "nodemon": "^2.0.20",
     "ts-node": "^10.9.1",
