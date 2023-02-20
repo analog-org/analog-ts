@@ -19,7 +19,6 @@ import { devConfig } from "./devconfig";
 import path from "node:path";
 import cron from "node-cron";
 
-
 export type TaskFunction = () => void;
 
 dotenv.config();
@@ -74,7 +73,7 @@ taskFiles.forEach((file: string) => {
 
   // Find the exported function and call it to schedule the task
   const taskFunction = taskModule.default;
-  if(!taskFunction) return
+  if (!taskFunction) return;
   taskFunction();
 });
 
@@ -97,15 +96,24 @@ client.on("interactionCreate", async (interaction: CommandInteraction) => {
   const command = client.commands.get(interaction.commandName);
 
   if (!command) return;
-
-  try {
-    await command.execute(interaction);
-  } catch (error) {
-    await interaction.reply({
-      content: "There was an error while executing this command!",
-      ephemeral: true,
-    });
-    console.error(error)
+  if (interaction.isChatInputCommand()) {
+    try {
+      await command.execute(interaction);
+    } catch (error) {
+      console.error(error);
+    }
+  } else if (interaction.isContextMenuCommand()) {
+    try {
+      await command.execute(interaction);
+    } catch (error) {
+      console.error(error);
+    }
+  } else if (interaction.isAutocomplete()) {
+    try {
+      await command.autocomplete(interaction);
+    } catch (error) {
+      console.error(error);
+    }
   }
 });
 
@@ -116,19 +124,18 @@ client.selectMenus = new Collection();
 const compPath = path.join(__dirname, "src/components");
 const componentFolders = readdirSync(compPath);
 
-
 for (const folder of componentFolders) {
   const comps = path.join(compPath, folder);
   const componentFiles = readdirSync(comps).filter((file) =>
     file.endsWith(".js")
   );
-  
+
   switch (folder) {
     case "buttons":
       for (const file of componentFiles) {
         const filePath = path.join(compPath, folder, file);
         const button = require(filePath);
-        
+
         client.buttons.set(button.data.name, button);
       }
       break;
@@ -160,9 +167,8 @@ client.on(
       | SelectMenuInteraction
   ) => {
     if (interaction.isButton()) {
-
       const button = client.buttons.get(interaction.customId);
-      if(!button) return;
+      if (!button) return;
       try {
         await button.execute(interaction);
       } catch (error) {
@@ -174,7 +180,7 @@ client.on(
       }
     } else if (interaction.isAnySelectMenu()) {
       const selectMenu = client.selectMenus.get(interaction.customId);
-      if(!selectMenu) return;
+      if (!selectMenu) return;
       try {
         await selectMenu.execute(interaction);
       } catch (error) {
@@ -186,7 +192,7 @@ client.on(
       }
     } else if (interaction.isModalSubmit()) {
       const modal = client.modals.get(interaction.customId);
-      if(!modal) return;
+      if (!modal) return;
       try {
         await modal.execute(interaction);
       } catch (error) {
