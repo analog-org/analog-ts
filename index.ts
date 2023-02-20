@@ -18,6 +18,8 @@ import { regCMD } from "./src/deploy-commands";
 import { devConfig } from "./devconfig";
 import path from "node:path";
 
+export type TaskFunction = () => void;
+
 dotenv.config();
 export const client: any = new Client({
   intents: [
@@ -55,6 +57,24 @@ for (const file of eventFiles) {
   }
 }
 
+// Get the list of task files in the tasks folder
+const tasksFolder = path.join(__dirname, "src/tasks");
+const taskFiles = fs
+  .readdirSync(tasksFolder)
+  .filter((file) => file.endsWith(".js"));
+
+taskFiles.forEach((file: string) => {
+  // Dynamically import the task module
+  const taskModule: { default: TaskFunction } = require(path.join(
+    tasksFolder,
+    file
+  ));
+
+  // Find the exported function and call it to schedule the task
+  const taskFunction = taskModule.default;
+  if(!taskFunction) return
+  taskFunction();
+});
 
 client.commands = new Collection();
 // This gets the command modules from the command folders
